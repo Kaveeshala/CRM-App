@@ -1,0 +1,54 @@
+@model IEnumerable<CRM.Models.Company>
+
+@{ ViewData["Title"] = "List"; }
+
+<h1>List of @ViewBag.Message</h1>
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List of Companies</a>
+</div>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NIP)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.City)
+    </td>
+    
+    <td>
+        
+        <a asp-controller="Companies" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
+        
+    </td>
+</tr>}
+    </tbody>
+</table>

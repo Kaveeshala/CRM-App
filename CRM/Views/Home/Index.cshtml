@@ -1,0 +1,48 @@
+﻿@model CRM.Models.User
+@using Microsoft.AspNetCore.Authentication
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="display-4">Welcome</h2>
+                    <h4>Hello, @User.FindFirst("role").Value!</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="mb-4">
+                        Username: <strong>@User.FindFirst("user").Value</strong>
+                    </h5>
+                    <div class="mb-4">
+                        <h6>Claims Information:</h6>
+                        <dl class="row">
+                            @foreach (var claim in User.Claims)
+                            {
+                                <dt class="col-sm-4 text-right">@claim.Type:</dt>
+                                <dd class="col-sm-8">@claim.Value</dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-header {
+        border-bottom: 3px solid #fff;
+    }
+
+    .card-body h5 {
+        color: #333;
+    }
+
+    .btn-success, .btn-secondary {
+        width: 150px;
+    }
+</style>
